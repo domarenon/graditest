@@ -204,7 +204,7 @@ const ProductDetail = () => {
 							<Modal.Footer>
 							
 							<Button variant="input-group-text adding-buttons cart-button" onClick={handleClose}>
-								Confirm Add to Cart
+								Confirm Add to Carto
 							</Button>
 							</Modal.Footer>
 						</Modal>
