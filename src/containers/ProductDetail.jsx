@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Slider from '../functions/Slider'
-import HeaderDetail from './HeaderDetail';
+import { Modal, Button } from 'react-bootstrap';
 import '../styles/ProductDetail.css'
 
 const API = 'https://graditest-store.myshopify.com/products/free-trainer-3-mmw.js'
@@ -19,7 +19,7 @@ const ProductDetail = () => {
 
 	const [sizeIndex, setSizeIndex] = useState({index: 0, value: ''})
 
-	const [variantPrice, setVariantPrice] = useState({price: 0, compareAtPrice: 0})
+	const [variantSelected, setVariantSelected] = useState({name: '',price: 0, compareAtPrice: 0})
 
 	const [totalPrice, setTotalPrice] = useState(0)
 
@@ -37,11 +37,13 @@ const ProductDetail = () => {
 		return false
 	}
 
-	const changeVariantPrice = () => {
-		for (const variant of product.variants) {
-			if(variant.option1 === colorIndex.value && variant.option2 === sizeIndex.value)
-			{
-				setVariantPrice({price: variant.price, compareAtPrice: variant.compare_at_price})
+	const changeVariantSelected = () => {
+		if (product.variants){
+			for (const variant of product.variants) {
+				if(variant.option1 === colorIndex.value && variant.option2 === sizeIndex.value)
+				{
+					setVariantSelected({name: variant.name, price: variant.price, compareAtPrice: variant.compare_at_price})
+				}
 			}
 		}
 	}
@@ -57,7 +59,7 @@ const ProductDetail = () => {
 		let available = validateSizeAvailable(size);
         if(colorIndex != 0 && available){
 			setSizeIndex({index: index, value: size});
-			changeVariantPrice();
+			changeVariantSelected();
 		}
     }
 
@@ -83,8 +85,14 @@ const ProductDetail = () => {
 		}
 	}
 
-	const addToCart = () => {
-		console.log("quantity: ", quantity)
+	const [show, setShow] = useState(false);
+
+	const handleClose = () => setShow(false);
+
+	const handleShow = () => {
+		changeVariantSelected();
+		setShow(true);
+		
 	}
 
 	return (
@@ -103,7 +111,15 @@ const ProductDetail = () => {
 						<Slider media={product.media}></Slider>
 					</Col>
 					<Col xs={6}>
-						<HeaderDetail product={product} variantPrice={variantPrice} variant></HeaderDetail>
+
+						<div className="header-product-detail">
+							<p className="gray-color">by Nike x ALYX</p>
+							<h1>{product.title}</h1>
+							<span className="price actual-price">$ {(variantSelected.price===0)?String(product.price).slice(0, -2):String(variantSelected.price).slice(0, -2)}.00</span>
+							<span className="price compare-price gray-color">$ {(variantSelected.compareAtPrice===0)?String(product.compare_at_price).slice(0, -2):String(variantSelected.compareAtPrice).slice(0, -2)}.00</span>
+						</div>
+
+						<hr/>
 
 						{product.options?.map((option) => (
 							<>
@@ -147,7 +163,6 @@ const ProductDetail = () => {
 							))
 						}
 
-						
 						<div className="product-quantity">
 							<Row>
 								<Col xs={6}>
@@ -158,7 +173,7 @@ const ProductDetail = () => {
 									</div>
 								</Col>
 								<Col xs={6} className="align-left centered">
-									<span className="gray-color">Total Price: </span>{totalPrice}
+									<span className="gray-color">Total Price: </span>${String(totalPrice).slice(0, -2)+(totalPrice===0?"0":".00")}
 								</Col>
 							</Row>
 						</div>
@@ -171,13 +186,30 @@ const ProductDetail = () => {
 								</Col>
 								<Col xs={12} md={6} >
 									<div className="input-group">
-										<button type="button" onClick={addToCart} className="input-group-text adding-buttons cart-button">Add to Cart</button>
+										<button type="button" onClick={handleShow} className="input-group-text adding-buttons cart-button">Add to Cart</button>
 									</div>
 								</Col>
 							</Row>
 						</div>
-
 						<div className="product-description gray-color" dangerouslySetInnerHTML={ {__html: product.description} } />
+						
+						{/* MODAL DETAIL ADDED TO CART */}
+						<Modal show={show} onHide={handleClose}>
+							<Modal.Header closeButton>
+							<Modal.Title>
+								{variantSelected.name}
+							</Modal.Title>
+							</Modal.Header>
+							<Modal.Body>You selected {quantity} "{variantSelected.name}" for the price of ${String(totalPrice).slice(0, -2)+(totalPrice===0?"0":".00")}</Modal.Body>
+							<Modal.Footer>
+							
+							<Button variant="input-group-text adding-buttons cart-button" onClick={handleClose}>
+								Confirm Add to Cart
+							</Button>
+							</Modal.Footer>
+						</Modal>
+
+						{/* MODAL DETAIL ADDED TO CART */}
 
 					</Col>
 				</Row>
