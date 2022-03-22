@@ -27,6 +27,8 @@ const ProductDetail = () => {
 		changingTotalPrice()
 	},[quantity])
 
+
+	/* VALIDATING IF VARIANT IS AVAILABLE */
 	const validateSizeAvailable = (size) => {
 		for (const variant of product.variants) {
 			if(variant.option1 === colorIndex.value && variant.option2 === size && variant.available === true)
@@ -36,7 +38,9 @@ const ProductDetail = () => {
 		}
 		return false
 	}
+	/* VALIDATING IF VARIANT IS AVAILABLE - END */
 
+	/* CHANGING VARIANT INFO BASED IN THE PRODUCT SELECTED */
 	const changeVariantSelected = () => {
 		if (product.variants){
 			for (const variant of product.variants) {
@@ -47,7 +51,9 @@ const ProductDetail = () => {
 			}
 		}
 	}
+	/* CHANGING VARIANT INFO BASED IN THE PRODUCT SELECTED - END */
 
+	/* CHANGING PRODUCT SELECTED INFO */
 	const moveDotColor = (index, color) => {
         setColorIndex({index: index, value: color});
 		setSizeIndex({index: 0, value: ''});
@@ -84,7 +90,9 @@ const ProductDetail = () => {
 			}
 		}
 	}
+	/* CHANGING PRODUCT SELECTED INFO - END*/
 
+	/* SHOW MODAL PROPERTIES */
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -92,19 +100,22 @@ const ProductDetail = () => {
 	const handleShow = () => {
 		changeVariantSelected();
 		setShow(true);
-		
 	}
+	/* SHOW MODAL PROPERTIES - END */
+
 
 	return (
 		<section className="main-container">
 			<div className="ProductDetail">
 			<Container>
 				<Row>
+					{/* LINKS MENU */}
 					<Col xs={12}>
 						<div className="header-links gray-color">
 							Catalog / Sneakers / <span className="link-active">{product.title}</span>
 						</div>
 					</Col>
+					{/* LINKS MENU - END */}
 				</Row>
 				<Row>
 					<Col xs={6}>
@@ -112,15 +123,18 @@ const ProductDetail = () => {
 					</Col>
 					<Col xs={6}>
 
+						{/* HEADER DETAIL  */}
 						<div className="header-product-detail">
 							<p className="gray-color">by Nike x ALYX</p>
 							<h1>{product.title}</h1>
 							<span className="price actual-price">$ {(variantSelected.price===0)?String(product.price).slice(0, -2):String(variantSelected.price).slice(0, -2)}.00</span>
 							<span className="price compare-price gray-color">$ {(variantSelected.compareAtPrice===0)?String(product.compare_at_price).slice(0, -2):String(variantSelected.compareAtPrice).slice(0, -2)}.00</span>
 						</div>
+						{/* HEADER DETAIL - END */}
 
 						<hr/>
 
+						{/* CHANGING VARIANTS OPTIONS  */}
 						{product.options?.map((option) => (
 							<>
 							<div className="option-container">
@@ -162,7 +176,9 @@ const ProductDetail = () => {
 							</>
 							))
 						}
+						{/* CHANGING VARIANTS OPTIONS - END */}
 
+						{/* ADDING PRODUCTS BUTTONS */}
 						<div className="product-quantity">
 							<Row>
 								<Col xs={6}>
@@ -192,7 +208,9 @@ const ProductDetail = () => {
 							</Row>
 						</div>
 						<div className="product-description gray-color" dangerouslySetInnerHTML={ {__html: product.description} } />
+						{/* ADDING PRODUCTS BUTTONS - END */}
 						
+
 						{/* MODAL DETAIL ADDED TO CART */}
 						<Modal show={show} onHide={handleClose}>
 							<Modal.Header closeButton>
@@ -204,12 +222,12 @@ const ProductDetail = () => {
 							<Modal.Footer>
 							
 							<Button variant="input-group-text adding-buttons cart-button" onClick={handleClose}>
-								Confirm Add to Carto
+								Confirm Add to Cart
 							</Button>
 							</Modal.Footer>
 						</Modal>
 
-						{/* MODAL DETAIL ADDED TO CART */}
+						{/* MODAL DETAIL ADDED TO CART - END */}
 
 					</Col>
 				</Row>

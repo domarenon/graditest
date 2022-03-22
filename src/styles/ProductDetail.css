@@ -11,6 +11,7 @@
 .actual-price{
     font-size: 25px;
 }
+/* HEADER DETAIL - END */
 
 /* OPTIONS VARIANTS */
 .container-buttons {
@@ -59,6 +60,7 @@
     left: 50%;
     margin: -8px 0 0 -8px;
 }
+/* OPTION 1: COLORS - END */
 
 /* OPTION 2: SIZE */
 .dot-size {
@@ -73,6 +75,8 @@
 .dot-size.active {
     border: 2px solid #000000;
 }
+/* OPTION 2: SIZE -END  */
+/* OPTIONS VARIANTS - END */
 
 /* ADDING PRODUCTS */
 .input-group-text {
@@ -92,6 +96,7 @@
 .increase{
     border-left:white!important;
 }
+/* ADDING PRODUCTS - END */
 
 /* ADD TO CART - FAVOURITE BUTTONS */
 .adding-buttons{
@@ -111,3 +116,4 @@
     background-color: #e4e4e4 !important;
 }
 
+/* ADD TO CART - FAVOURITE BUTTONS - END */
