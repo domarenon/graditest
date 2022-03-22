@@ -1,0 +1,113 @@
+/* HEADER DETAIL */
+.header-product-detail, .product-quantity, .product-add-to-cart{
+    margin-bottom:30px;
+}
+
+.compare-price{
+    margin-left: 10px;
+    text-decoration-line: line-through;
+}
+  
+.actual-price{
+    font-size: 25px;
+}
+
+/* OPTIONS VARIANTS */
+.container-buttons {
+    bottom: 10px;
+    left: 50%;
+    display: flex;
+    flex-wrap:wrap;
+}
+
+.centered{
+    align-items:center;
+    display:flex;
+}
+
+.middle{
+    justify-content:center;
+    display:flex;
+}
+
+.align-left{
+    justify-content:flex-end;
+    display:flex;
+}
+
+/* OPTION 1: COLORS */
+.dot-color {
+    position:relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 5px;
+    background: #ffffff;
+    cursor: pointer;
+}
+.dot-color.active {
+    border: 2px solid #000000;
+}
+
+.inside-dot-color{
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -8px 0 0 -8px;
+}
+
+/* OPTION 2: SIZE */
+.dot-size {
+    position:relative;
+    width: 35px;
+    height: 35px;
+    margin: 7px 7px;
+    background: #ffffff;
+    cursor: pointer;
+    border: 1px solid rgb(184, 184, 184);
+}
+.dot-size.active {
+    border: 2px solid #000000;
+}
+
+/* ADDING PRODUCTS */
+.input-group-text {
+    background-color: white!important;
+    border-radius:0px!important;
+}
+
+.quantity{
+    flex: 0.2 0.2!important;
+    border-left:white!important;
+    border-right:white!important;
+}
+
+.decrease{
+    border-right:white!important;
+}
+.increase{
+    border-left:white!important;
+}
+
+/* ADD TO CART - FAVOURITE BUTTONS*/
+.adding-buttons{
+    flex: 1 1 auto;
+    margin-bottom:10px;
+    text-align: center;
+    display: inline-block!important;
+    line-height: 50px;
+
+}
+.cart-button{
+    background-color: black!important;
+    color: white ! important;
+}
+
+.favourite-button{
+    background-color: #e4e4e4 !important;
+}
+

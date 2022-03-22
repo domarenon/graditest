@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.header-links{
+  margin-top:30px;
+  margin-bottom: 20px;
+}
+
+.link-active{
+  color:black;
+  cursor:pointer;
+}
+
+.gray-color{
+  color:rgb(158, 157, 157)
+}
