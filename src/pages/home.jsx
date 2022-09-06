@@ -1,5 +1,5 @@
 import React from "react";
-import ProductDetail from '../containers/ProductDetail';
+import ProductDetail from '../components/ProductDetail';
 
 const Home = () => {
     return(

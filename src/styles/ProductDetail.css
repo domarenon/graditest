@@ -70,7 +70,7 @@
     margin: 7px 7px;
     background: #ffffff;
     cursor: pointer;
-    border: 1px solid rgb(184, 184, 184);
+    border: 1px solid rgb(107, 107, 107);
 }
 .dot-size.active {
     border: 2px solid #000000;
@@ -114,6 +114,12 @@
 
 .favourite-button{
     background-color: #e4e4e4 !important;
+}
+
+.disabled {
+    color: #ccc;
+    border-color: #ccc;
+    cursor:auto;
 }
 
 /* ADD TO CART - FAVOURITE BUTTONS - END */
