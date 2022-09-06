@@ -38,7 +38,7 @@ const ProductForm = (props) => {
 
     const moveDotSize = (index, size) => {
         const available = validateSizeAvailable(size);
-        if (colorIndex != 0 && available) {
+        if (colorIndex !== 0 && available) {
             setSizeIndex({ index: index, value: size });
             changeVariantSelected();
         }

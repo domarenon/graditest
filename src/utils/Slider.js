@@ -17,6 +17,7 @@ export default function Slider(props) {
             props.media?.map((obj,index) => (
 				<div key={"div_"+obj.id} className={slideIndex === index + 1 ? "slide active-anim" : "slide"}>
                     <img
+                    alt ={"img "+index}
                     key={obj.id}
                     src={obj.src}/>
                 </div>
@@ -35,8 +36,9 @@ export default function Slider(props) {
         {
         props.media?.map((obj,index) => (
             
-            <div key={"div_media_"+obj.id} className={index == 0 ? "media_img_first" : "media_img_others"}>
+            <div key={"div_media_"+obj.id} className={index === 0 ? "media_img_first" : "media_img_others"}>
                 <img
+                alt ={"img "+index}
                 src={obj.src}/>
             </div>
             ))
